@@ -6,7 +6,7 @@ def main():
     board = make_board()
     player = player_current("")
     # ----- While loop -----
-    while not (player_win(board)):
+    while not (player_win(board) or players_tie(board)):
         show_board(board)
         player_turn(player, board)
         player = player_current(player)
@@ -52,6 +52,13 @@ def player_win(board):
             board[2] == board[5] == board[8] or
             board[0] == board[4] == board[8] or
             board[6] == board[4] == board[2])
+
+# ----- Function for if nobody wins, the game will need to end -----
+def players_tie(board):
+    for box in range(9):
+        if board[box] != "x" and board[box] != "o":
+            return False
+    return True
 
 # ----- Run that main function -----
 if __name__ == "__main__":
