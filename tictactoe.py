@@ -4,7 +4,14 @@
 # ----- Main function -----
 def main():
     board = make_board()
+    player = player_current("")
+    # ----- While loop -----
+    while not (player_win(board)):
+        show_board(board)
+        player_turn(player, board)
+        player = player_current(player)
     show_board(board)
+    print("Good game. Thanks for playing!")
 
 # ----- Function for creating the board boxes -----
 def make_board():
@@ -34,6 +41,17 @@ def player_current(current):
         return "x"
     elif current == "x":
         return "o"
+
+# ----- Function for ending the game with ALL the possible winning outcomes (I hope) -----
+def player_win(board):
+    return (board[0] == board[1] == board[2] or
+            board[3] == board[4] == board[5] or
+            board[6] == board[7] == board[8] or
+            board[0] == board[3] == board[6] or
+            board[1] == board[4] == board[7] or
+            board[2] == board[5] == board[8] or
+            board[0] == board[4] == board[8] or
+            board[6] == board[4] == board[2])
 
 # ----- Run that main function -----
 if __name__ == "__main__":
